@@ -17,8 +17,40 @@
 
 ---
 
+## Em uso de verdade
+
+Os três sistemas rodam **todos os dias** na Gráfica Rápida Ctrl A Ctrl P, em São Paulo, **desde o início de setembro de 2026**.
+Antes, os pedidos eram anotados em papel e pendurados na parede, as vendas iam para uma planilha do Excel
+e o resto ficava de cabeça. O desenvolvimento aconteceu em repositório privado, junto com o uso na loja;
+este é o primeiro envio público.
+
+**Números reais do ERP — 1º de setembro a 12 de novembro de 2026**
+
+| | |
+|---|---|
+| 🧾 **1.166** vendas lançadas no caixa | 📅 **61** dias de caixa aberto e fechado no sistema |
+| 📦 **245** pedidos criados, **213** já entregues | 📄 **95%** dos pedidos com ficha em PDF e QR code |
+| 👥 **468** clientes cadastrados | ⏱️ **4,3 dias** do pedido à entrega (mediana) |
+| 🔎 **6.284** ações registradas no histórico de auditoria | 📱 **7** aparelhos pareados (computadores e celulares) |
+
+**Antes × depois**
+
+| Tarefa | Antes (papel + Excel) | Com o CTRL Suite |
+|---|---|---|
+| Achar um pedido e responder "meu pedido está pronto?" | 3 a 5 min: abrir o Excel, procurar, olhar a parede | segundos, pela busca ou pelo celular — **cerca de 95% mais rápido** |
+| Conferir o caixa no fim do dia | revisar o WhatsApp para achar lançamento esquecido | cada venda é lançada na hora; o fechamento mostra Confere/Falta/Sobra |
+| Saber em que etapa está cada pedido | papel na parede | etapas no sistema, com prazo em dias úteis e histórico |
+| Saber quem mexeu em quê | não havia registro | toda alteração fica no histórico, com usuário, antes e depois |
+| Orçar uma impressão 3D | conta de cabeça | custo, preço e prazo a partir do arquivo do fatiador |
+| Folha de ponto | versão antiga sem histórico de alterações | saldo automático, motivo obrigatório em ajustes e PDF mensal |
+
+<sub>Números contados direto do banco do ERP, só quantidades. O "antes" é a estimativa de quem usa a loja todo dia.</sub>
+
+---
+
 ## Sumário
 
+- [Em uso de verdade](#em-uso-de-verdade)
 - [Os três sistemas](#os-três-sistemas)
 - [CTRL ERP — gestão da gráfica](#ctrl-erp--gestão-da-gráfica)
 - [CTRL 3D — custos e prazos de impressão 3D](#ctrl-3d--custos-e-prazos-de-impressão-3d)
@@ -27,6 +59,7 @@
 - [Tecnologias e arquitetura](#tecnologias-e-arquitetura)
 - [Como rodar](#como-rodar)
 - [Privacidade e segurança](#privacidade-e-segurança)
+- [Próximos passos](#próximos-passos)
 
 ---
 
@@ -194,6 +227,30 @@ ctrl-suite/
 - Todas as capturas usam **dados de demonstração** (pessoas, clientes e valores fictícios).
 - Nos testes do ERP, telefones, nomes de clientes e endereços de rede foram trocados por fictícios; os testes continuam passando.
 - O carimbo real dos recibos foi substituído por uma imagem de exemplo.
+
+---
+
+## Próximos passos
+
+A ideia é manter cada sistema **independente** — se um estiver desligado, os outros continuam funcionando —
+mas ligado ao ERP, que vira o centro:
+
+```mermaid
+flowchart LR
+    ERP[(CTRL ERP<br/>pedidos, clientes, caixa)]
+    P3D[CTRL 3D]
+    PON[CTRL Ponto]
+    NOVO[próximos módulos]
+    ERP -- "pedido de impressão 3D abre o CTRL 3D" --> P3D
+    P3D -- "orçamento volta como pedido para confirmar" --> ERP
+    PON -- "horas da equipe" --> ERP
+    NOVO -.-> ERP
+```
+
+- [ ] **CTRL 3D ↔ ERP:** criar o pedido 3D no ERP, calcular no CTRL 3D e devolver o orçamento pronto para confirmação.
+- [ ] **CTRL Ponto → ERP:** horas da equipe no painel do ERP e custo de mão de obra nos relatórios.
+- [ ] **Novos módulos** no mesmo padrão: app separado, mesmo visual, ligação opcional com o ERP.
+- [ ] Testes automáticos no GitHub Actions e versões prontas para baixar (Releases).
 
 ---
 
