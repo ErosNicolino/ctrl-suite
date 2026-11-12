@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CTRL 3D • Manual de uso</title>
+<style>
+  :root { --cy:#00AEEF; --mg:#EC008C; --ye:#FFD200; --bk:#111; --bg:#F4F5F8; --txt:#15171C; --txt2:#4B5160; --mut:#8A909C; --linha:#ECEDF1; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--txt); line-height: 1.6; font-size: 15px; }
+  header { background: var(--bk); color: #fff; padding: 34px 0 28px; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+  header h1 { margin: 0; font-size: 34px; letter-spacing: -.5px; }
+  header p { margin: 6px 0 0; color: #B9BDC7; }
+  .cmyk { display: flex; height: 5px; width: 160px; border-radius: 4px; overflow: hidden; margin-top: 16px; }
+  .cmyk i { flex: 1; } .cmyk i:nth-child(1){background:var(--cy)} .cmyk i:nth-child(2){background:var(--mg)}
+  .cmyk i:nth-child(3){background:var(--ye)} .cmyk i:nth-child(4){background:#fff}
+  nav.indice { background: #fff; border: 1px solid var(--linha); border-radius: 16px; padding: 18px 24px; margin: -18px 0 24px; box-shadow: 0 6px 24px rgba(0,0,0,.05); }
+  nav.indice b { display: block; margin-bottom: 6px; }
+  nav.indice ol { margin: 0; padding-left: 20px; columns: 2; }
+  nav.indice a { color: var(--txt2); text-decoration: none; }
+  nav.indice a:hover { color: var(--mg); }
+  section { background: #fff; border: 1px solid var(--linha); border-radius: 16px; padding: 22px 28px; margin-bottom: 18px; }
+  h2 { margin: 0 0 10px; font-size: 21px; display: flex; align-items: center; gap: 10px; }
+  h2 .n { width: 30px; height: 30px; border-radius: 9px; background: var(--c, var(--cy)); color: #fff; display: grid; place-items: center; font-size: 14px; flex: none; }
+  h3 { font-size: 16px; margin: 18px 0 4px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--linha); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: var(--mut); }
+  code, kbd { background: #F1F2F5; border-radius: 6px; padding: 1px 6px; font-family: Consolas, monospace; font-size: 13px; }
+  .dica { background: #E9F8FE; border: 1px solid #C5ECFB; border-radius: 12px; padding: 10px 14px; margin: 10px 0; }
+  .aviso { background: #FFF8D6; border: 1px solid #FBE38A; border-radius: 12px; padding: 10px 14px; margin: 10px 0; }
+  ol.passos li { margin-bottom: 4px; }
+  footer { text-align: center; color: var(--mut); font-size: 13px; padding: 10px 0 40px; }
+  .slogan b:nth-child(1){color:var(--mg)} .slogan b:nth-child(2){color:var(--cy)} .slogan b:nth-child(3){color:#C9A400}
+  @media print { body { background: #fff; } header { background: #fff; color: #000; } section, nav.indice { box-shadow: none; break-inside: avoid; } }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>CTRL 3D — Manual de uso</h1>
+  <p>Custos, prazos e pedidos de impressão 3D • Anycubic Kobra X</p>
+  <div class="cmyk"><i></i><i></i><i></i><i></i></div>
+</div></header>
+
+<div class="wrap">
+<nav class="indice"><b>Conteúdo</b><ol>
+  <li><a href="#comecar">Primeiros passos</a></li>
+  <li><a href="#orcamento">Fazer um orçamento</a></li>
+  <li><a href="#arquivos">Arquivos do fatiador</a></li>
+  <li><a href="#mesa">Mesa e tempo</a></li>
+  <li><a href="#pessoal">Uso pessoal</a></li>
+  <li><a href="#catalogo">Catálogo</a></li>
+  <li><a href="#pedidos">Pedidos e fila</a></li>
+  <li><a href="#estoque">Filamentos, gastos e resumo</a></li>
+  <li><a href="#contas">Como as contas são feitas</a></li>
+  <li><a href="#dados">Dados e backup</a></li>
+  <li><a href="#problemas">Problemas comuns</a></li>
+</ol></nav>
+
+<section id="comecar"><h2><span class="n">1</span>Primeiros passos</h2>
+  <p>Abra o programa com dois cliques em <b>CTRL 3D.exe</b> (ou no atalho da área de trabalho). Antes do primeiro orçamento, faça estes três ajustes — só uma vez:</p>
+  <ol class="passos">
+    <li><b>Configurações:</b> preço do kWh da sua conta de luz, valor pago na impressora, sua hora de trabalho e margem de lucro padrão.</li>
+    <li><b>Configurações › Canais de venda:</b> confira as taxas da Shopee, Mercado Livre e maquininha (elas mudam com frequência).</li>
+    <li><b>Filamentos:</b> cadastre seus rolos com <b>nome, cor, tipo e preço</b>. Com a cor cadastrada, o programa escolhe o rolo certo sozinho ao ler o arquivo.</li>
+  </ol>
+  <div class="dica">O consumo de luz vem estimado em 250 W. Para o valor exato, meça a Kobra X com uma tomada medidora durante uma impressão.</div>
+</section>
+
+<section id="orcamento"><h2><span class="n" style="--c:var(--mg)">2</span>Fazer um orçamento</h2>
+  <p>Na <b>Calculadora</b> o orçamento é feito em 4 etapas. A barra de baixo mostra tempo, prazo, custo e preço ao vivo; <kbd>Enter</kbd> avança.</p>
+  <table>
+    <tr><th>Etapa</th><th>O que fazer</th></tr>
+    <tr><td><b>1. A peça</b></td><td>Solte o arquivo do fatiador na janela, escolha um produto do catálogo ou preencha à mão (tempo, gramas por cor e tamanho).</td></tr>
+    <tr><td><b>2. O pedido</b></td><td>Cliente, <b>quantas peças ele quer</b> e o canal de venda. Aqui aparece quantas cabem na mesa.</td></tr>
+    <tr><td><b>3. Preço</b></td><td>Margem de lucro, preço manual (opcional), acabamento, embalagem e extras.</td></tr>
+    <tr><td><b>4. Resumo</b></td><td>Tudo pronto: tempo total, data de entrega, custo, preço e lucro. Botões <b>Salvar pedido</b>, <b>Copiar p/ WhatsApp</b> e <b>Salvar no catálogo</b>.</td></tr>
+  </table>
+  <div class="aviso"><b>Atenção:</b> “Peças nesse arquivo” (etapa 1) é quantas peças estão na mesa do arquivo — normalmente 1. A quantidade do cliente vai na etapa 2.</div>
+</section>
+
+<section id="arquivos"><h2><span class="n" style="--c:var(--ye)">3</span>Arquivos do fatiador</h2>
+  <table>
+    <tr><th>Formato</th><th>De onde vem</th><th>O que o programa lê</th></tr>
+    <tr><td><code>.gcode</code></td><td>Anycubic Slicer, Orca, Prusa, Cura</td><td>Tempo, gramas e cor de cada filamento, peças na mesa, tamanho (L × P × A) e foto</td></tr>
+    <tr><td><code>.gcode.3mf</code></td><td>Anycubic Slicer Next / Orca</td><td>Tudo acima, somando todas as mesas do projeto</td></tr>
+    <tr><td><code>.bgcode</code></td><td>PrusaSlicer (G-code binário)</td><td>Tudo acima</td></tr>
+    <tr><td><code>.stl</code> / <code>.3mf</code> sem fatiar</td><td>Modelo 3D</td><td>Não tem tempo: fatie primeiro e use o arquivo fatiado</td></tr>
+  </table>
+  <p>Arraste o arquivo para qualquer lugar da janela, ou clique na caixa rosa para escolher. O <b>tamanho para impressão</b> aparece num selo em cima da foto.</p>
+</section>
+
+<section id="mesa"><h2><span class="n">4</span>Mesa e tempo</h2>
+  <p>O programa calcula quantas peças cabem na mesa da Kobra X (260 × 260 mm, até 260 mm de altura), já descontando <b>5 mm entre as peças</b> e <b>5 mm na borda</b> (ajustáveis em Configurações).</p>
+  <ul>
+    <li><b>Peças por impressão</b> em branco = o máximo que cabe. Se você usar menos, aparece um aviso amarelo mostrando quantas impressões, trocas de mesa e purga você economizaria.</li>
+    <li>O <b>tempo total</b> = tempo de 1 peça × quantidade + aquecimento de cada impressão (4 min) + troca de mesa entre impressões (5 min).</li>
+    <li>O <b>prazo</b> considera a fila: os pedidos Aprovados e Em produção que já estão na frente, rodando 12 h por dia (ajustável).</li>
+  </ul>
+  <div class="dica">A conta de “quantas cabem” usa o retângulo de cada peça. Peças redondas às vezes cabem um pouco mais no fatiador — o número do programa é sempre o lado seguro.</div>
+</section>
+
+<section id="pessoal"><h2><span class="n" style="--c:#12A150">5</span>Uso pessoal</h2>
+  <p>Para imprimir algo para você mesmo. Mostra só <b>quanto vai gastar</b> (filamento + luz + desgaste da máquina), sem preço, lucro, mão de obra ou embalagem.</p>
+  <p>O botão <b>Registrar impressão</b> guarda o gasto e desconta o filamento do estoque. Apagar um registro devolve o filamento. O total do mês aparece no <b>Resumo do mês</b>.</p>
+</section>
+
+<section id="catalogo"><h2><span class="n" style="--c:var(--mg)">6</span>Catálogo</h2>
+  <p>Monte a peça uma vez e clique em <b>Salvar no catálogo</b>. No próximo orçamento, escolha em “Já fez essa peça antes?” — o programa pula direto para a quantidade.</p>
+  <p>A tela <b>Catálogo</b> é uma tabela de preços: preço de cada unidade para 1, 10, 50 e 100 peças, por canal de venda.</p>
+</section>
+
+<section id="pedidos"><h2><span class="n" style="--c:var(--ye)">7</span>Pedidos e fila</h2>
+  <table>
+    <tr><th>Status</th><th>O que acontece</th></tr>
+    <tr><td>Orçamento</td><td>Só guardado. Mostra “se aprovar: dd/mm”.</td></tr>
+    <tr><td>Aprovado</td><td>Entra na fila da impressora (o prazo dos próximos já conta com ele).</td></tr>
+    <tr><td>Em produção</td><td>Na fila e <b>desconta o filamento</b> do estoque.</td></tr>
+    <tr><td>Pronto / Entregue / Pago</td><td>Sai da fila. “Pago” conta como recebido no Resumo.</td></tr>
+    <tr><td>Cancelado</td><td>Sai da fila e devolve o filamento, se já tinha descontado.</td></tr>
+  </table>
+  <p>Troque o status clicando na etiqueta colorida. O ícone de balão copia o orçamento para o WhatsApp.</p>
+</section>
+
+<section id="estoque"><h2><span class="n">8</span>Filamentos, gastos e resumo</h2>
+  <h3>Filamentos</h3>
+  <p>Cada rolo mostra o R$/kg e quanto sobra. Fica vermelho abaixo de 150 g. Use o lápis para ajustar o peso real (pese o rolo e desconte o carretel) e o <b>+</b> para repor um rolo.</p>
+  <h3>Gastos</h3>
+  <p>Lance tudo que sai do caixa: luz, filamento, peças, embalagem, aluguel, MEI. Ao cadastrar um rolo, a compra pode ir para Gastos automaticamente.</p>
+  <h3>Resumo do mês</h3>
+  <p>Vendido, recebido, gastos, saldo de caixa, lucro, horas de impressão e filamento usado. O botão <b>Exportar para Excel</b> gera uma planilha com resumo, pedidos, gastos e estoque.</p>
+</section>
+
+<section id="contas"><h2><span class="n" style="--c:var(--mg)">9</span>Como as contas são feitas</h2>
+  <table>
+    <tr><th>Item</th><th>Conta</th></tr>
+    <tr><td>Filamento</td><td>gramas de cada cor × R$/kg do rolo escolhido</td></tr>
+    <tr><td>Energia</td><td>horas imprimindo × consumo (W) × preço do kWh</td></tr>
+    <tr><td>Desgaste da máquina</td><td>horas × (valor da impressora ÷ vida útil + manutenção por hora)</td></tr>
+    <tr><td>Reserva para falhas</td><td>% sobre filamento + energia + desgaste</td></tr>
+    <tr><td>Mão de obra</td><td>(preparo + acabamento × peças + trocas de mesa) × sua hora</td></tr>
+    <tr><td>Preço sugerido</td><td>(custo × (1 + margem) + taxa fixa do canal) ÷ (1 − % do canal − % de imposto), arredondado para cima</td></tr>
+    <tr><td>Lucro</td><td>valor total − taxas do canal − imposto − custo</td></tr>
+  </table>
+</section>
+
+<section id="dados"><h2><span class="n" style="--c:var(--ye)">10</span>Dados e backup</h2>
+  <p>Tudo fica num único arquivo: <code>Dados\ctrl3d_dados.db</code>, dentro da pasta do programa.</p>
+  <ul>
+    <li><b>Backup:</b> Configurações › <b>Fazer backup agora</b>. A cópia vai para <code>Dados\Backups</code>, com data e hora no nome.</li>
+    <li><b>Restaurar um backup:</b> feche o programa, copie o backup desejado para <code>Dados\</code> e renomeie para <code>ctrl3d_dados.db</code>.</li>
+    <li><b>Duas cópias da pasta</b> (ex.: no C: e no Z:) têm <b>dados separados</b>. Use sempre a mesma para não dividir os pedidos.</li>
+  </ul>
+</section>
+
+<section id="problemas"><h2><span class="n">11</span>Problemas comuns</h2>
+  <table>
+    <tr><th>Problema</th><th>Solução</th></tr>
+    <tr><td>Arrastei o arquivo e não leu</td><td>Clique na caixa rosa e escolha o arquivo. Confira se é o arquivo <b>fatiado</b> (.gcode, .bgcode, .gcode.3mf).</td></tr>
+    <tr><td>Tamanho da peça vazio</td><td>Alguns arquivos não trazem o tamanho. Digite largura × profundidade × altura (o fatiador mostra).</td></tr>
+    <tr><td>Aviso “mesa diferente”</td><td>O arquivo foi fatiado para outra impressora. Fatie para a Kobra X para números exatos.</td></tr>
+    <tr><td>O programa não abre</td><td>Não apague nem mova a pasta escondida <code>_internal</code>: ela precisa ficar junto do <code>CTRL 3D.exe</code>.</td></tr>
+  </table>
+</section>
+</div>
+<footer><span class="slogan"><b>MODELE</b> • <b>IMPRIMA</b> • <b>CRIE</b></span><br>CTRL 3D — Impressão 3D</footer>
+</body>
+</html>

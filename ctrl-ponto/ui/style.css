@@ -1,0 +1,93 @@
+/* CTRL Ponto — telas próprias. O visual base vem de erp.css (o mesmo do ERP e do CTRL 3D). */
+
+.antigo { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.antigo[hidden] { display: none; }
+.antigo svg { width: 22px; height: 22px; }
+.antigo .btn { margin-left: auto; }
+.dois { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lista-simples .ln { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.lista-simples .ln:last-child { border-bottom: 0; }
+.lista-simples .ln.passou { color: var(--muted); }
+.filtros { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.filtros .busca { width: 300px; }
+
+/* ---------------- registrar ponto */
+.registro { display: grid; grid-template-columns: minmax(360px, .9fr) minmax(0, 1.1fr); gap: 12px; align-items: start; }
+.relogio-card { text-align: center; padding: 22px 24px; border-top: 4px solid var(--accent); }
+.pessoas { display: flex; justify-content: center; margin-bottom: 8px; }
+.pessoas select { max-width: 320px; }
+.relogio { font-size: 64px; font-weight: 600; letter-spacing: -1px; font-variant-numeric: tabular-nums; line-height: 1.1; margin: 10px 0 16px; }
+.btn.bater { width: 100%; min-height: 58px; font-size: 18px; border-radius: 12px; }
+.btn.bater svg { width: 22px; height: 22px; }
+.btn.bater:disabled { background: var(--surface-alt); color: var(--muted); border-color: var(--line); opacity: 1; }
+#i-ajuste { margin-top: 8px; min-height: 18px; }
+.linha-dia { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: 8px; margin-top: 18px; text-align: left; }
+.marco { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; background: var(--surface); }
+.marco small { display: block; font-size: 12px; color: var(--muted); }
+.marco b { font-size: 18px; font-variant-numeric: tabular-nums; }
+.marco.feito { background: var(--accent-soft); border-color: transparent; }
+.marco.feito b { color: var(--accent-ink); }
+.marco.agora { border-color: var(--accent); box-shadow: 0 0 0 3px var(--focus); }
+.marco.vazio b { color: var(--muted); }
+.kpi .v.neg { color: var(--danger); } .kpi .v.pos { color: var(--accent); }
+
+/* ---------------- folha */
+.folha td.h { font-variant-numeric: tabular-nums; }
+.folha tr.folga td { color: var(--muted); background: color-mix(in srgb, var(--surface-alt) 55%, var(--surface)); }
+.folha tbody tr { cursor: pointer; }
+.folha tr.hoje td { box-shadow: inset 0 0 0 9999px color-mix(in srgb, var(--accent-soft) 60%, transparent); }
+.folha .pos { color: var(--accent); font-weight: 600; } .folha .neg { color: var(--danger); font-weight: 600; }
+.folha .ed { color: var(--c-warn); font-weight: 700; margin-left: 2px; }
+
+/* ---------------- escala */
+.escala { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.escala .campo label { margin-bottom: 3px; }
+
+/* ---------------- diálogo de edição */
+.m-sub { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+.modal.largo { width: 620px; }
+.modal .bts { align-items: center; }
+.m-info { margin-right: auto; font-size: 13px; color: var(--muted); }
+.m-info b { color: var(--ink); }
+#m-form:empty { display: none; }
+#m-form .grade { margin-top: 4px; }
+.modal #m-txt:empty { display: none; }
+
+/* ---------------- folha A4 (PDF e impressão) */
+#folha-print { display: none; }
+@page { size: A4 portrait; margin: 0; }
+@media print {
+  body { display: block; overflow: visible; background: #fff; }
+  .lateral, .app, #toasts, #modal-fundo, #paleta-fundo, #carregando { display: none !important; }
+  #folha-print { display: block; }
+}
+.a4 { width: 210mm; height: 296mm; overflow: hidden; padding: 9mm 12mm 7mm; color: #202A30; font-family: "Segoe UI", Arial, sans-serif; font-size: 8.8pt; display: flex; flex-direction: column; background: #fff; }
+.a4 .cab { display: flex; align-items: center; gap: 10mm; }
+.a4 .cab img { height: 15mm; }
+.a4 .cab h1 { font-size: 19pt; font-weight: 700; line-height: 1.1; }
+.a4 .cab .mes { font-size: 12pt; font-weight: 700; color: #5B6970; margin-top: 2mm; }
+.a4 .cab .sub { font-size: 7.5pt; color: #5B6970; letter-spacing: .08em; margin-top: 1mm; }
+.a4 .faixa { display: flex; height: 1.2mm; margin: 4mm 0 3mm; }
+.a4 .faixa i { flex: 1; } .a4 .faixa i:nth-child(1){background:#00AEEF} .a4 .faixa i:nth-child(2){background:#EC008C}
+.a4 .faixa i:nth-child(3){background:#FFD200} .a4 .faixa i:nth-child(4){background:#111}
+.a4 .emp b { font-size: 10.5pt; } .a4 .emp div { color: #5B6970; font-size: 8pt; margin-top: .6mm; }
+.a4 .colab { display: flex; justify-content: space-between; background: #F2F6F5; border-radius: 1.5mm; padding: 3mm 5mm; margin: 3mm 0; }
+.a4 .colab small { display: block; font-size: 7pt; color: #5B6970; font-weight: 700; letter-spacing: .06em; }
+.a4 .colab b { font-size: 11pt; }
+.a4 table { width: 100%; border-collapse: collapse; }
+.a4 th { background: #202A30; color: #fff; font-size: 7.2pt; font-weight: 700; padding: 1.6mm 1mm; text-align: center; letter-spacing: .03em; }
+.a4 th:last-child, .a4 td:last-child { text-align: left; padding-left: 2.5mm; }
+.a4 td { text-align: center; padding: .45mm 1mm; line-height: 1.35; border-bottom: .2mm solid #DCE5E2; font-variant-numeric: tabular-nums; }
+.a4 tr.folga td { color: #93A1A7; background: #F7F9F8; }
+.a4 td.b { font-weight: 700; } .a4 .pos { color: #147A70; font-weight: 700; } .a4 .neg { color: #B54436; font-weight: 700; }
+.a4 .tot { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5mm; margin-top: 4mm; }
+.a4 .tot div { background: #F2F6F5; border-radius: 1.5mm; padding: 2.5mm 3.5mm; }
+.a4 .tot small { display: block; font-size: 7pt; color: #5B6970; font-weight: 700; letter-spacing: .05em; }
+.a4 .tot b { font-size: 15pt; }
+.a4 .obs { font-size: 7.5pt; color: #5B6970; margin-top: 3mm; line-height: 1.5; }
+.a4 .ass { display: grid; grid-template-columns: 1fr 1fr; gap: 14mm; margin-top: auto; padding-top: 8mm; }
+.a4 .faixa { margin: 3mm 0 2.5mm; }
+.a4 .colab { padding: 2.2mm 5mm; margin: 2.5mm 0; }
+.a4 .tot { margin-top: 3mm; } .a4 .tot div { padding: 2mm 3.5mm; } .a4 .tot b { font-size: 13.5pt; }
+.a4 .ass div { border-top: .25mm solid #202A30; padding-top: 1.5mm; font-size: 8pt; text-align: center; }
+.a4 .rod { display: flex; justify-content: space-between; border-top: .2mm solid #DCE5E2; margin-top: 4mm; padding-top: 2mm; font-size: 7pt; color: #93A1A7; }

@@ -1,0 +1,44 @@
+# ---------- Build (.NET)
+bin/
+obj/
+.vs/
+*.user
+TestResults/
+work/
+
+# ---------- Build (Python / PyInstaller)
+__pycache__/
+*.pyc
+build/
+dist/
+*.spec
+_internal/
+*.exe
+
+# ---------- Dados e documentos gerados: NUNCA vão para o repositório
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.lock
+*.log
+dados*.json
+*.xlsx
+*.pdf
+# (pastas de dados como backups/ e relatorios/ não ficam aqui; não usar esses nomes como regra:
+#  o ERP tem pastas de CÓDIGO chamadas Relatorios)
+
+# ---------- Segredos e configuração de servidor
+*.key
+*.pem
+*.pfx
+*.p12
+servidor.json
+BrowserTls/
+Identidade/
+.env
+
+# ---------- Sistema
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,1 @@
+﻿<Window x:Class="GraficaCaixa.Wpf.SaleWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Lançamento" Width="980" Height="700" MinWidth="750" MinHeight="600" WindowStartupLocation="CenterOwner" ResizeMode="CanResizeWithGrip" Icon="/Assets/icon.ico"><DockPanel x:Name="Host" Margin="18"/></Window>

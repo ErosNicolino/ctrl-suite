@@ -1,0 +1,14 @@
+﻿<Window x:Class="GraficaCaixa.Wpf.OrderHistoryWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Language="pt-BR" Title="Histórico de pedidos" Width="1120" Height="750" MinWidth="900" MinHeight="600" WindowStartupLocation="CenterOwner" Icon="/Assets/icon.ico">
+ <Grid Margin="28"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/><RowDefinition Height="220"/></Grid.RowDefinitions>
+  <StackPanel><TextBlock Text="Histórico de pedidos" Style="{StaticResource Title}"/><TextBlock Text="Todos os pedidos, incluindo entregues e arquivados, com pagamentos de caixas abertos e fechados." TextWrapping="Wrap" Foreground="{DynamicResource Muted}" Margin="0,6,0,14"/></StackPanel>
+  <TextBox Grid.Row="1" x:Name="SearchBox" TextChanged="Search_Changed" Tag="Pesquisar número, cliente, telefone, produto ou etapa…" ToolTip="Pesquisar por número, cliente, contato, produto ou etapa" Margin="0,0,0,14"/>
+  <DataGrid Grid.Row="2" x:Name="OrdersGrid" SelectionChanged="Selected_Changed">
+   <DataGrid.Columns>
+    <DataGridTextColumn Header="Pedido" Binding="{Binding Number}" Width="70"/><DataGridTextColumn Header="Cliente" Binding="{Binding CustomerName}" Width="2*"/>
+    <DataGridTextColumn Header="Etapa" Binding="{Binding Stage}" Width="1.5*"/><DataGridTextColumn Header="Total" Binding="{Binding OrderTotal, StringFormat=C2}" Width="100" HeaderStyle="{StaticResource MoneyHeader}" ElementStyle="{StaticResource MoneyCell}"/>
+    <DataGridTextColumn Header="Recebido" Binding="{Binding PaidAmount, StringFormat=C2}" Width="100" HeaderStyle="{StaticResource MoneyHeader}" ElementStyle="{StaticResource MoneyCell}"/><DataGridTextColumn Header="Saldo" Binding="{Binding RemainingAmount, StringFormat=C2}" Width="100" HeaderStyle="{StaticResource MoneyHeader}" ElementStyle="{StaticResource MoneyCell}"/>
+   </DataGrid.Columns>
+  </DataGrid>
+  <Border Grid.Row="3" Style="{StaticResource Card}" Margin="0,14,0,0"><ScrollViewer VerticalScrollBarVisibility="Auto"><TextBlock x:Name="DetailText" Text="Selecione um pedido para consultar itens, custos e o histórico dos pagamentos." TextWrapping="Wrap"/></ScrollViewer></Border>
+ </Grid>
+</Window>

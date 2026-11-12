@@ -1,0 +1,11 @@
+# Gerados pelo Python / PyInstaller
+__pycache__/
+*.pyc
+build/
+dist/
+*.spec
+
+# Dados e backups NUNCA vão para o GitHub (ficam em ..\Dados)
+*.db
+*.db-journal
+*.xlsx

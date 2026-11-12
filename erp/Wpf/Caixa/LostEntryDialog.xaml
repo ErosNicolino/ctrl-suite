@@ -1,0 +1,21 @@
+﻿<Window x:Class="GraficaCaixa.Wpf.LostEntryDialog" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:GraficaCaixa.Wpf" Title="Lançamento perdido" Width="680" SizeToContent="Height" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False" Icon="/Assets/icon.ico">
+ <local:DialogFrame x:Name="Frame" Kind="Lancamento" IconName="wallet" Title="{Binding Text, ElementName=TitleText}" Subtitle="Venda que ficou fora do fechamento · Enter avança · Ctrl+Enter salva · Esc fecha" ScrollBody="False">
+  <local:DialogFrame.Footer><StackPanel Orientation="Horizontal"><Button Content="Cancelar" Style="{StaticResource GhostButton}" Margin="0,0,8,0" Click="Cancel_Click" ToolTip="Esc"/><Button x:Name="SaveButton" Content="Salvar lançamento" Style="{StaticResource DialogPrimaryButton}" Click="Save_Click" IsDefault="True" ToolTip="Ctrl+Enter"/></StackPanel></local:DialogFrame.Footer>
+  <StackPanel><TextBlock x:Name="TitleText" Text="Novo lançamento perdido" Visibility="Collapsed"/>
+   <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="16"/><ColumnDefinition/></Grid.ColumnDefinitions>
+    <StackPanel><TextBlock Text="Data do lançamento *" Style="{StaticResource FieldLabel}"/><DatePicker x:Name="DateBox"/><TextBlock x:Name="DateError" Style="{StaticResource FieldError}" Visibility="Collapsed"/></StackPanel>
+    <StackPanel Grid.Column="2"><TextBlock Text="Horário *" Style="{StaticResource FieldLabel}"/><TextBox x:Name="TimeBox" Tag="08:30"/><TextBlock x:Name="TimeError" Style="{StaticResource FieldError}" Visibility="Collapsed"/></StackPanel>
+   </Grid>
+   <Grid Margin="0,14,0,0"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="16"/><ColumnDefinition/></Grid.ColumnDefinitions>
+    <StackPanel><TextBlock Text="Quem foi / cliente *" Style="{StaticResource FieldLabel}"/><TextBox x:Name="NameBox" Tag="Nome do cliente"/><TextBlock x:Name="NameError" Style="{StaticResource FieldError}" Visibility="Collapsed"/></StackPanel>
+    <StackPanel Grid.Column="2"><TextBlock Text="Contato / telefone" Style="{StaticResource FieldLabel}"/><TextBox x:Name="ContactBox" Tag="(11) 90000-0000"/></StackPanel>
+   </Grid>
+   <TextBlock Text="Descrição ou motivo" Style="{StaticResource FieldLabel}" Margin="0,14,0,0"/><TextBox x:Name="DescriptionBox" Tag="Ex.: 20 impressões A4 coloridas"/>
+   <Grid Margin="0,14,0,0"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="16"/><ColumnDefinition/></Grid.ColumnDefinitions>
+    <StackPanel><TextBlock Text="Forma de pagamento *" Style="{StaticResource FieldLabel}"/><ComboBox x:Name="PaymentBox"/></StackPanel>
+    <StackPanel Grid.Column="2"><TextBlock Text="Valor (R$) *" Style="{StaticResource FieldLabel}"/><TextBox x:Name="AmountBox" Tag="0,00" TextAlignment="Right"/><TextBlock x:Name="AmountError" Style="{StaticResource FieldError}" Visibility="Collapsed"/></StackPanel>
+   </Grid>
+   <Border Style="{StaticResource NoteCalm}" Margin="0,16,0,0"><TextBlock Text="Se existir um fechamento na data escolhida, o lançamento entra nele e o PDF é atualizado. Sem fechamento nessa data, fica guardado em Lançamentos perdidos." TextWrapping="Wrap"/></Border>
+  </StackPanel>
+ </local:DialogFrame>
+</Window>

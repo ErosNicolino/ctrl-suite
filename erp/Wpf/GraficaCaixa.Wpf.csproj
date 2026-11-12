@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- AD0001: o analisador de rotas do ASP.NET Core falha (NullReference) nos mapeamentos com Delegate; é defeito do analisador, não do código. -->
+    <NoWarn>$(NoWarn);AD0001</NoWarn>
+    <Version>2026.11.11.1</Version><OutputType>WinExe</OutputType><TargetFramework>net10.0-windows</TargetFramework><UseWPF>true</UseWPF>
+    <SatelliteResourceLanguages>pt-BR</SatelliteResourceLanguages><RootNamespace>GraficaCaixa.Wpf</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><AssemblyName>Caixa da Grafica</AssemblyName>
+    <ServerGarbageCollection>false</ServerGarbageCollection><ConcurrentGarbageCollection>true</ConcurrentGarbageCollection><ApplicationIcon>..\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Core\Servidor\BrowserGateway.cs" Link="Core\BrowserGateway.cs" /><Compile Include="..\Core\Servidor\WebApiV1.cs" Link="Core\WebApiV1.cs" /><Compile Include="..\Core\Servidor\WebQueries.cs" Link="Core\WebQueries.cs" /><Compile Include="..\Core\Servidor\WebFiles.cs" Link="Core\WebFiles.cs" /><Compile Include="..\Core\Seguranca\DeviceSecurity.cs" Link="Core\DeviceSecurity.cs" />
+    <Compile Include="..\Core\Seguranca\IdentitySecurity.cs" Link="Core\IdentitySecurity.cs" /><Compile Include="..\Core\Seguranca\ReceiptAuthorization.cs" Link="Core\ReceiptAuthorization.cs" /><Compile Include="..\Core\Seguranca\AuditQuery.cs" Link="Core\AuditQuery.cs" /><Compile Include="..\Core\Seguranca\ServerAuthorization.cs" Link="Core\ServerAuthorization.cs" /><Compile Include="..\Core\Seguranca\PermissionSecurity.cs" Link="Core\PermissionSecurity.cs" />
+    <Compile Include="..\Core\Financeiro\BusinessIndicators.cs" Link="Core\BusinessIndicators.cs" /><Compile Include="..\Core\Pedidos\TodayQueue.cs" Link="Core\TodayQueue.cs" /><Compile Include="..\Core\Pedidos\OrderOperations.cs" Link="Core\OrderOperations.cs" /><Compile Include="..\Core\Pedidos\OrderTracking.cs" Link="Core\OrderTracking.cs" /><Compile Include="..\Core\Financeiro\FinancialOperations.cs" Link="Core\FinancialOperations.cs" /><Compile Include="..\Core\Dados\Models.cs" Link="Core\Models.cs" />
+    <Compile Include="..\Core\Dados\Prompt12State.cs" Link="Core\Prompt12State.cs" />
+    <Compile Include="..\Core\Dados\CashFlowResult.cs" Link="Core\CashFlowResult.cs" />
+    <Compile Include="..\Core\Clientes\CommunicationOperations.cs" Link="Core\CommunicationOperations.cs" />
+    <Compile Include="..\Core\Clientes\CommunicationTemplate.cs" Link="Core\CommunicationTemplate.cs" />
+    <Compile Include="..\Core\Clientes\CounterCustomer.cs" Link="Core\CounterCustomer.cs" />
+    <Compile Include="..\Core\Financeiro\Expense.cs" Link="Core\Expense.cs" />
+    <Compile Include="..\Core\Financeiro\ExpenseStatus.cs" Link="Core\ExpenseStatus.cs" />
+    <Compile Include="..\Core\Financeiro\FiscalDocument.cs" Link="Core\FiscalDocument.cs" />
+    <Compile Include="..\Core\Pedidos\KnownYield.cs" Link="Core\KnownYield.cs" />
+    <Compile Include="..\Core\Financeiro\LossOperations.cs" Link="Core\LossOperations.cs" />
+    <Compile Include="..\Core\Financeiro\LossStatus.cs" Link="Core\LossStatus.cs" />
+    <Compile Include="..\Core\Dados\ManagementResult.cs" Link="Core\ManagementResult.cs" />
+    <Compile Include="..\Core\Pedidos\MaterialCostMode.cs" Link="Core\MaterialCostMode.cs" />
+    <Compile Include="..\Core\Pedidos\MaterialDefinition.cs" Link="Core\MaterialDefinition.cs" />
+    <Compile Include="..\Core\Clientes\MessageTemplates.cs" Link="Core\MessageTemplates.cs" />
+    <Compile Include="..\Core\Seguranca\OwnerPinCredential.cs" Link="Core\OwnerPinCredential.cs" />
+    <Compile Include="..\Core\Seguranca\OwnerSecurity.cs" Link="Core\OwnerSecurity.cs" /><Compile Include="..\Core\Seguranca\LoginSecurity.cs" Link="Core\LoginSecurity.cs" />
+    <Compile Include="..\Core\Seguranca\OwnerSession.cs" Link="Core\OwnerSession.cs" />
+    <Compile Include="..\Core\Seguranca\PrivateDataPolicy.cs" Link="Core\PrivateDataPolicy.cs" />
+    <Compile Include="..\Core\Financeiro\PrivateFinance.cs" Link="Core\PrivateFinance.cs" /><Compile Include="..\Core\Financeiro\CashForecast.cs" Link="Core\CashForecast.cs" />
+    <Compile Include="..\Core\Pedidos\ProductCosting.cs" Link="Core\ProductCosting.cs" />
+    <Compile Include="..\Core\Pedidos\ProductCostKind.cs" Link="Core\ProductCostKind.cs" />
+    <Compile Include="..\Core\Pedidos\ProductCostReference.cs" Link="Core\ProductCostReference.cs" />
+    <Compile Include="..\Core\Pedidos\ProductionCalculation.cs" Link="Core\ProductionCalculation.cs" />
+    <Compile Include="..\Core\Pedidos\ProductionCalculator.cs" Link="Core\ProductionCalculator.cs" />
+    <Compile Include="..\Core\Pedidos\ProductionShape.cs" Link="Core\ProductionShape.cs" />
+    <Compile Include="..\Core\Pedidos\Purchase.cs" Link="Core\Purchase.cs" />
+    <Compile Include="..\Core\Pedidos\Supplier.cs" Link="Core\Supplier.cs" />
+    <Compile Include="..\Core\Pedidos\PurchaseNeed.cs" Link="Core\PurchaseNeed.cs" />
+    <Compile Include="..\Core\Pedidos\PurchaseNeedStatus.cs" Link="Core\PurchaseNeedStatus.cs" />
+    <Compile Include="..\Core\Pedidos\PurchasePriority.cs" Link="Core\PurchasePriority.cs" />
+    <Compile Include="..\Core\Financeiro\ReceivableLoss.cs" Link="Core\ReceivableLoss.cs" /><Compile Include="..\Core\Dados\SQLiteDataStore.cs" Link="Core\SQLiteDataStore.cs" /><Compile Include="..\Core\Relatorios\ReportWriter.cs" Link="Core\ReportWriter.cs" /><Compile Include="..\Core\Relatorios\QrCode.cs" Link="Core\QrCode.cs" />
+  </ItemGroup>
+  <ItemGroup><Resource Include="..\icon.ico" Link="Assets\icon.ico" /><Resource Include="Assets\brand-logo.png" /><EmbeddedResource Include="Assets\receipt-stamp.png" LogicalName="GraficaCaixa.ReceiptStamp.png" /><EmbeddedResource Include="Assets\order-logo.png" LogicalName="GraficaCaixa.OrderLogo.png" /><EmbeddedResource Include="Assets\frases.txt" LogicalName="GraficaCaixa.DailyPhrases.txt" /></ItemGroup>
+  <ItemGroup><FrameworkReference Include="Microsoft.AspNetCore.App" /></ItemGroup>
+  <ItemGroup><PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.5" /></ItemGroup>
+  <ItemGroup><PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0" /></ItemGroup>
+  <ItemGroup><Content Include="Assets\lucide-license.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" /></ItemGroup>
+<ItemGroup><EmbeddedResource Include="..\Pwa\*" LogicalName="CacpPwa.%(Filename)%(Extension)" /></ItemGroup><ItemGroup><Compile Include="..\Core\Clientes\CustomerSummaryQuery.cs" /><Compile Include="..\Core\Clientes\CustomerRecords.cs" /><Compile Include="..\Core\Servidor\MobileSaleApi.cs" /><Compile Include="..\Core\Servidor\ModuleQueries.cs" /><Compile Include="..\Core\Servidor\OperationalApi.cs" /><Compile Include="..\Core\Servidor\OperationalQueries.cs" /><Compile Include="..\Core\Servidor\ReportQueries.cs" /><Compile Include="..\Core\Clientes\CustomerCommand.cs" /></ItemGroup><ItemGroup><Compile Include="..\Core\Clientes\CustomerBasicOperations.cs" /></ItemGroup><ItemGroup><Compile Include="..\Core\Pedidos\OrderWriteContracts.cs" /><Compile Include="..\Core\Servidor\MobileOrderDrafts.cs" /><Compile Include="..\Core\Servidor\MobileOrderPayments.cs" /><Compile Include="..\Core\Servidor\MobileCommandStore.cs" /><Compile Include="..\Core\Servidor\MobileOrderApi.cs" /></ItemGroup><ItemGroup><Compile Include="..\Core\Servidor\MobileReceiptPdf.cs" /></ItemGroup><ItemGroup><Compile Include="..\Core\Servidor\DesktopWrites.cs" /></ItemGroup><ItemGroup></ItemGroup><ItemGroup><Compile Include="..\Core\Servidor\BusinessWrites.cs" /></ItemGroup><ItemGroup><Compile Include="..\Core\Servidor\BusinessReads.cs" /></ItemGroup><ItemGroup><Compile Include="..\Core\Servidor\BusinessArtifacts.cs" /></ItemGroup><ItemGroup><Compile Include="..\Core\Financeiro\ReceivableViews.cs" /></ItemGroup></Project>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+# Gerados pelo Python / PyInstaller
+__pycache__/
+*.pyc
+build/
+dist/
+*.spec
+
+# Registros de ponto, PDFs e fotos são dados pessoais: NUNCA vão para o GitHub
+# (ficam em %LOCALAPPDATA%\CtrlPonto)
+dados*.json
+*.pdf
+*.jpeg
+*.jpg

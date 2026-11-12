@@ -1,0 +1,33 @@
+using System.Windows;
+using System.Windows.Controls;
+namespace GraficaCaixa.Wpf;
+public sealed class DevicesWindow:Window
+{
+ readonly DataStore store;readonly DataGrid devices=new(){AutoGenerateColumns=false,IsReadOnly=true,SelectionMode=DataGridSelectionMode.Single},sessions=new(){AutoGenerateColumns=false,IsReadOnly=true,SelectionMode=DataGridSelectionMode.Single};readonly TextBlock feedback=new(){TextWrapping=TextWrapping.Wrap,VerticalAlignment=VerticalAlignment.Center};
+ readonly TabControl tabs=new();Button endSession=null!,revokeDevice=null!;
+ public DevicesWindow(DataStore store){
+  this.store=store;Title="Sessões e dispositivos";Width=1060;Height=680;MinWidth=850;MinHeight=550;WindowStartupLocation=WindowStartupLocation.CenterOwner;
+  var root=new DockPanel{Margin=new Thickness(28)};Content=root;var top=new StackPanel{Margin=new Thickness(0,0,0,16)};DockPanel.SetDock(top,Dock.Top);root.Children.Add(top);top.Children.Add(new TextBlock{Text=Title,Style=(Style)FindResource("Title")});var subtitle=new TextBlock{Text="Revogue acessos sem apagar usuários ou histórico. Selecione uma linha para ver as ações dela.",Margin=new Thickness(0,6,0,0)};subtitle.SetResourceReference(TextBlock.ForegroundProperty,"Muted");top.Children.Add(subtitle);
+  var bar=new DockPanel{Margin=new Thickness(0,16,0,0)};DockPanel.SetDock(bar,Dock.Bottom);root.Children.Add(bar);var actions=new WrapPanel();var general=new StackPanel{Orientation=Orientation.Horizontal};DockPanel.SetDock(general,Dock.Right);bar.Children.Add(general);bar.Children.Add(actions);
+  Button Add(Panel panel,string label,string tip,Action action,string style="SoftButton"){var b=new Button{Content=label,Style=(Style)FindResource(style),Margin=new Thickness(0,0,8,8),ToolTip=tip};ToolTipService.SetShowOnDisabled(b,true);b.Click+=(_,_)=>Run(action);panel.Children.Add(b);return b;}
+  endSession=Add(actions,"Encerrar sessão","Encerra a sessão selecionada (aba Sessões). Esse acesso precisará entrar de novo.",()=>{if(sessions.SelectedItem is SessionView v&&AlertWindow.Confirm(this,"Encerrar sessão",$"Encerrar a sessão de {v.User} em {v.Device}? Será exigido novo login nesse acesso.",true)){store.EndSession(v.Session.Id);Reload();Toast.Show(this,"Sessão encerrada.",tone:"ok");}},"DangerCompactButton");
+  revokeDevice=Add(actions,"Revogar dispositivo","Bloqueia o computador ou celular selecionado (aba Dispositivos). Ele precisará ser pareado de novo.",()=>{if(devices.SelectedItem is DeviceView v&&AlertWindow.Confirm(this,"Revogar dispositivo",$"Revogar {v.Name}? Todos os acessos desse dispositivo serão encerrados e será necessário novo pareamento.",true)){store.RevokeDevice(v.Device.Id);Reload();Toast.Show(this,"Dispositivo revogado.",tone:"ok");}},"DangerCompactButton");
+  Add(general,"Atualizar","Recarregar as listas (F5)",Reload);
+  Add(general,"Cancelar códigos de pareamento","Invalida os códigos de conexão gerados e ainda não usados em outro computador.",()=>{if(AlertWindow.Confirm(this,"Pareamento","Invalidar os códigos temporários ainda não utilizados?")){store.RevokePairings();Toast.Show(this,"Códigos pendentes cancelados.",tone:"ok");}});
+  Add(general,"Trocar credencial deste PC","Gera uma nova chave de acesso só para este computador (use se suspeitar que ela vazou). O ERP fecha e você entra de novo.",()=>{if(!AlertWindow.Confirm(this,"Trocar credencial deste PC","Os acessos deste computador serão encerrados. A nova credencial será cifrada e será necessário entrar novamente. Outros dispositivos continuam autorizados.",true))return;store.RotateDevice();AlertWindow.Info(this,"Credencial trocada","Reabra o ERP e entre novamente. Outros dispositivos permanecem autorizados.");Application.Current.Shutdown();});
+  DockPanel.SetDock(feedback,Dock.Bottom);feedback.Margin=new Thickness(0,8,0,0);feedback.SetResourceReference(TextBlock.ForegroundProperty,"Muted");root.Children.Add(feedback);
+  root.Children.Add(tabs);tabs.Items.Add(new TabItem{Header="Dispositivos",Content=devices});tabs.Items.Add(new TabItem{Header="Sessões (até 500)",Content=sessions});
+  void Column(DataGrid grid,string name,string binding,double width)=>grid.Columns.Add(binding=="Status"?StatusTag.Column(name,binding,new DataGridLength(width,DataGridLengthUnitType.Star)):new DataGridTextColumn{Header=name,Binding=new System.Windows.Data.Binding(binding),Width=new DataGridLength(width,DataGridLengthUnitType.Star)});
+  foreach(var p in new[]{("Dispositivo","Name",2d),("Pareado em","Created",1.3),("Último uso","LastUsed",1.3),("Status","Status",1d)})Column(devices,p.Item1,p.Item2,p.Item3);
+  foreach(var p in new[]{("Usuário","User",1.4),("Dispositivo","Device",1.6),("Criada em","Created",1.3),("Renovação até","Refresh",1.3),("Status","Status",1d)})Column(sessions,p.Item1,p.Item2,p.Item3);
+  devices.SelectionChanged+=(_,_)=>UpdateActions();sessions.SelectionChanged+=(_,_)=>UpdateActions();tabs.SelectionChanged+=(s,e)=>{if(e.Source==tabs)UpdateActions();};
+  PreviewKeyDown+=(_,e)=>{if(e.Key==System.Windows.Input.Key.F5){e.Handled=true;Run(Reload);}};
+  Loaded+=(_,_)=>{Run(Reload);UpdateActions();};
+ }
+ // Ações da linha só ficam ativas na aba certa, com uma linha selecionada que ainda pode ser encerrada/revogada.
+ void UpdateActions(){endSession.IsEnabled=tabs.SelectedIndex==1&&sessions.SelectedItem is SessionView{Session.Revoked:false};revokeDevice.IsEnabled=tabs.SelectedIndex==0&&devices.SelectedItem is DeviceView{Device.Revoked:false};}
+ void Run(Action action){try{action();feedback.SetResourceReference(TextBlock.ForegroundProperty,"Muted");feedback.Text=$"Atualizado às {DateTime.Now:HH:mm:ss}. Nenhum segredo é exibido.";}catch(Exception ex){feedback.SetResourceReference(TextBlock.ForegroundProperty,"Danger");feedback.Text=ex.Message;}}
+ void Reload(){devices.ItemsSource=store.Devices().Select(x=>new DeviceView(x)).ToList();sessions.ItemsSource=store.Sessions().Select(x=>new SessionView(x)).ToList();UpdateActions();}
+ sealed record DeviceView(DeviceSummary Device){public string Name=>Device.Name;public string Created=>Device.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm");public string LastUsed=>Device.LastUsed?.ToLocalTime().ToString("dd/MM/yyyy HH:mm")??"—";public string Status=>Device.Revoked?"Revogado":"Autorizado";}
+ sealed record SessionView(SessionSummary Session){public string User=>Session.User;public string Device=>Session.Device;public string Created=>Session.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm");public string Refresh=>Session.RefreshExpires.ToLocalTime().ToString("dd/MM/yyyy HH:mm");public string Status=>Session.Revoked?"Encerrada":Session.Device.StartsWith("Legado 7B")?"Novo login":Session.RefreshExpires<=DateTimeOffset.UtcNow?"Expirada":"Renovável";}
+}

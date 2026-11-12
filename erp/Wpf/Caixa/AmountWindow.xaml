@@ -1,0 +1,7 @@
+<Window x:Class="GraficaCaixa.Wpf.AmountWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:GraficaCaixa.Wpf" Width="520" SizeToContent="Height" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False" Title="Abrir caixa">
+ <!-- UX 2.0: diálogo simples (P3) — mesmo valor, mesma validação (≥ 0); erro junto do campo. -->
+ <local:DialogFrame x:Name="Frame" Kind="Neutro" IconName="wallet" ScrollBody="False">
+  <local:DialogFrame.Footer><StackPanel Orientation="Horizontal"><Button Content="Cancelar" Style="{StaticResource GhostButton}" Margin="0,0,8,0" Click="Cancel_Click" ToolTip="Esc"/><Button Content="Confirmar" Style="{StaticResource DialogPrimaryButton}" Click="Ok_Click" IsDefault="True"/></StackPanel></local:DialogFrame.Footer>
+  <StackPanel><TextBlock x:Name="TitleText" Visibility="Collapsed"/><TextBlock x:Name="PromptText" Style="{StaticResource FieldLabel}"/><TextBox x:Name="AmountBox" Text="0,00" FontSize="24" Height="56" FontWeight="SemiBold" TextAlignment="Right"/><TextBlock x:Name="ErrorText" Style="{StaticResource FieldError}" Visibility="Collapsed"/><TextBlock Text="Conte o dinheiro que está na gaveta agora (troco inicial)." Style="{StaticResource Hint}" Margin="0,8,0,0"/></StackPanel>
+ </local:DialogFrame>
+</Window>

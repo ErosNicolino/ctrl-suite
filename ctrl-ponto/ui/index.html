@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CTRL Ponto • Controle de jornada</title>
+<link rel="stylesheet" href="erp.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="carregando"><img src="logo.png" alt="CTRL Ponto"></div>
+
+<aside class="lateral">
+  <img class="logo" src="logo.png" alt="CTRL Ponto">
+  <nav class="nav" id="nav">
+    <div class="eyebrow-nav">PONTO</div>
+    <button data-p="inicio" title="Registrar ponto (F2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Registrar ponto</button>
+    <button data-p="folha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>Folha mensal<span class="badge" id="badge-pend" hidden></span></button>
+    <div class="eyebrow-nav">EQUIPE</div>
+    <button data-p="equipe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Equipe</button>
+    <button data-p="escala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M9 16l2 2 4-4"/></svg>Escala e feriados</button>
+    <button data-p="historico" class="fin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg>Histórico de alterações</button>
+  </nav>
+  <div class="rodape">
+    <button class="nav-item" data-p="config"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>Configurações</button>
+    <button class="nav-item" id="bt-ajuda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>Manual de uso</button>
+    <div class="ambiente">Funciona offline • dados neste computador</div>
+  </div>
+</aside>
+
+<div class="app">
+<header class="topbar">
+  <button class="comando" id="bt-comando" title="Ir para telas e ações (Ctrl+K)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="txt">Ir para… telas e ações</span><span class="kbd">Ctrl</span><span class="kbd">K</span></button>
+  <div class="espaco"></div>
+  <button class="chip-topo" id="chip-agora" title="Quem está trabalhando agora"><span class="ponto" id="chip-ponto"></span><span id="chip-txt">—</span></button>
+  <button class="btn" id="bt-registrar-topo" title="Registrar ponto (F2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Registrar ponto</button>
+</header>
+<main id="main">
+  <div class="nota-aviso antigo" id="aviso-antigo" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></svg>
+    <div><b>A versão antiga do CTRL Ponto está aberta.</b> As duas não podem registrar ao mesmo tempo. Feche a antiga para usar esta.</div>
+    <button class="btn soft peq" id="bt-fechar-antigo">Fechar a versão antiga</button>
+  </div>
+
+  <!-- ======================= REGISTRAR PONTO ======================= -->
+  <section class="pagina" id="pg-inicio">
+    <div class="topo"><div><h1>Registrar ponto</h1><p id="i-data"></p></div></div>
+    <div class="registro">
+      <div class="card relogio-card">
+        <div class="pessoas" id="i-pessoas"></div>
+        <div class="relogio" id="i-relogio">--:--:--</div>
+        <button class="btn bater" id="i-bater"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span id="i-bater-txt">Registrar</span></button>
+        <div class="nota" id="i-ajuste"></div>
+        <div class="linha-dia" id="i-linha"></div>
+      </div>
+      <div>
+        <div class="kpis" style="--n:2">
+          <div class="kpi info"><div><small>Trabalhado hoje</small><div class="v" id="k-trab">—</div><div class="s" id="k-trab-s"></div></div></div>
+          <div class="kpi warn"><div><small>Falta cumprir hoje</small><div class="v" id="k-falta">—</div><div class="s" id="k-falta-s"></div></div></div>
+          <div class="kpi marca"><div><small>Saldo do mês</small><div class="v" id="k-mes">—</div><div class="s" id="k-mes-s"></div></div></div>
+          <div class="kpi violet"><div><small>Saldo acumulado</small><div class="v" id="k-total">—</div><div class="s">todas as jornadas completas</div></div></div>
+        </div>
+        <div class="card tab">
+          <div class="card-titulo"><h2>Equipe hoje</h2><span class="nota" id="i-equipe-n"></span></div>
+          <table class="tabela" id="i-equipe"></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FOLHA MENSAL ======================= -->
+  <section class="pagina" id="pg-folha">
+    <div class="topo"><div><h1>Folha mensal</h1><p>Clique num dia para ajustar os horários. O PDF e a impressão usam a mesma folha A4.</p></div>
+      <div class="acoes-topo">
+        <button class="btn soft" id="f-foto" hidden>Ver foto original</button>
+        <button class="btn soft" id="f-imprimir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>Imprimir…</button>
+        <button class="btn" id="f-pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M12 18v-6M9 15l3 3 3-3"/></svg>Gerar PDF</button>
+      </div></div>
+    <div class="filtros">
+      <select class="inp" id="f-pessoa" style="width:280px"></select>
+      <div class="junto"><button class="icone" id="f-ant" title="Mês anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+        <input class="inp" type="month" id="f-mes" style="width:170px">
+        <button class="icone" id="f-prox" title="Próximo mês"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div>
+      <span class="tag" id="f-fechado" hidden></span>
+    </div>
+    <div class="kpis" style="--n:5" id="f-kpis"></div>
+    <div class="card tab"><table class="tabela folha" id="f-tab"></table></div>
+    <p class="nota">Saldo calculado só para jornadas completas. * Ajuste manual. Intervalos de almoço são descontados.</p>
+  </section>
+
+  <!-- ======================= EQUIPE ======================= -->
+  <section class="pagina" id="pg-equipe">
+    <div class="topo"><div><h1>Equipe</h1><p>Colaboradores arquivados saem do registro, mas o histórico e as folhas continuam guardados.</p></div>
+      <div class="acoes-topo"><button class="btn" id="e-add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Adicionar colaborador</button></div></div>
+    <div class="card tab"><table class="tabela" id="e-tab"></table></div>
+  </section>
+
+  <!-- ======================= ESCALA E FERIADOS ======================= -->
+  <section class="pagina" id="pg-escala">
+    <div class="topo"><div><h1>Escala e feriados</h1><p>Meta de horas líquidas de cada dia (almoço já descontado). Jornadas já iniciadas guardam a meta delas.</p></div></div>
+    <div class="dois">
+      <div class="card">
+        <h2><span class="num">1</span>Escala da semana <small>vale a partir de hoje</small></h2>
+        <div class="escala" id="s-escala"></div>
+        <div class="junto" style="justify-content:flex-end; margin-top:12px"><button class="btn" id="s-salvar">Salvar escala</button></div>
+      </div>
+      <div class="card">
+        <h2><span class="num">2</span>Feriados de São Paulo/SP <span class="dir"><select class="inp" id="s-ano" style="width:110px; height:34px"></select></span></h2>
+        <p class="nota" style="margin-bottom:8px">Nacionais, estaduais e municipais são automáticos. Carnaval e pontos facultativos não bloqueiam o registro.</p>
+        <div class="lista-simples" id="s-feriados"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2><span class="num">3</span>Mudança de jornada em uma data <small>folga combinada, trabalho no feriado ou domingo, meio período…</small></h2>
+      <div class="grade" style="--cols:5; align-items:end">
+        <div class="campo"><label>Data</label><input class="inp" id="x-data" placeholder="dd/mm/aaaa"></div>
+        <div class="campo"><label>Colaborador</label><select class="inp" id="x-pessoa"></select></div>
+        <div class="campo"><label>Meta do dia</label><input class="inp" id="x-meta" placeholder="00:00 = folga"></div>
+        <div class="campo"><label>Motivo</label><input class="inp" id="x-motivo" placeholder="Ex.: folga combinada"></div>
+        <div class="campo"><button class="btn soft" id="x-add" style="width:100%">Adicionar</button></div>
+      </div>
+      <table class="tabela" id="x-tab" style="margin-top:12px"></table>
+    </div>
+  </section>
+
+  <!-- ======================= HISTÓRICO ======================= -->
+  <section class="pagina" id="pg-historico">
+    <div class="topo"><div><h1>Histórico de alterações</h1><p>Todo registro, ajuste e fechamento fica guardado com data, hora e motivo.</p></div></div>
+    <div class="filtros">
+      <input class="inp busca" id="h-busca" placeholder="Buscar (nome, data, motivo…)">
+      <div class="segmentado" id="h-tipo"><button data-t="" class="on">Tudo</button><button data-t="Registro">Registros</button><button data-t="Ajuste">Ajustes</button><button data-t="Fechamento">Fechamentos</button></div>
+    </div>
+    <div class="card tab"><table class="tabela" id="h-tab"></table></div>
+  </section>
+
+  <!-- ======================= CONFIGURAÇÕES ======================= -->
+  <section class="pagina" id="pg-config">
+    <div class="topo"><div><h1>Configurações</h1><p>Dados da empresa para a folha, registro e início automático.</p></div>
+      <div class="acoes-topo"><button class="btn" id="c-salvar">Salvar</button></div></div>
+    <div class="card">
+      <h2><span class="num">1</span>Empresa <small>aparece no cabeçalho da folha</small></h2>
+      <div class="grade" style="--cols:3">
+        <div class="campo"><label>Nome</label><input class="inp" id="c-nome"></div>
+        <div class="campo"><label>CNPJ</label><input class="inp" id="c-cnpj"></div>
+        <div class="campo"><label>Endereço</label><input class="inp" id="c-end"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2><span class="num">2</span>Registro e fechamento</h2>
+      <div class="grade">
+        <div class="campo"><label>A entrada conta quantos minutos antes?</label>
+          <div class="junto"><input class="inp p" id="c-ajuste"><span class="uni">minutos</span></div>
+          <div class="dica">Tempo de chegar e ligar o computador. Vale só para a entrada do dia (0 = hora exata).</div></div>
+        <div class="campo"><label>Fechamento automático do mês</label>
+          <label class="switch"><input type="checkbox" id="c-auto"><span>Gerar o PDF do mês sozinho (último dia após as 20h, se não houver pendências)</span></label></div>
+        <div class="campo"><label>Iniciar com o Windows</label>
+          <label class="switch"><input type="checkbox" id="c-iniciar"><span>Abrir escondido na bandeja ao ligar o computador</span></label>
+          <div class="dica">Ao ligar, esta versão passa a abrir no lugar da versão antiga.</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2><span class="num">3</span>Seus dados</h2>
+      <p class="nota" id="c-pasta"></p>
+      <div class="junto" style="margin-top:12px; flex-wrap:wrap">
+        <button class="btn soft" id="c-abrir">Abrir pasta de dados</button>
+        <button class="btn soft" id="c-relatorios">Abrir PDFs gerados</button>
+        <button class="btn soft" id="c-backup">Fazer backup agora</button>
+      </div>
+      <p class="nota" style="margin-top:8px">Cópias diárias automáticas ficam na pasta backups. Copie a pasta de dados para outro disco de vez em quando.</p>
+    </div>
+  </section>
+</main>
+</div>
+
+<!-- folha A4 (só aparece no PDF e na impressão) -->
+<div id="folha-print"></div>
+
+<div id="toasts"></div>
+<div id="modal-fundo"><div class="modal" id="modal"><div class="m-cab"><h3 id="m-tit"></h3><div class="m-sub" id="m-sub"></div></div>
+  <div class="m-corpo"><p id="m-txt"></p><div id="m-form"></div><input class="inp" id="m-inp" hidden></div>
+  <div class="bts"><span class="m-info" id="m-info"></span><button class="btn soft" id="m-nao">Cancelar</button><button class="btn" id="m-sim">OK</button></div></div></div>
+<div id="paleta-fundo"><div class="paleta"><input id="paleta-inp" placeholder="Ir para… (digite o nome da tela ou ação)"><div class="itens" id="paleta-itens"></div></div></div>
+<script src="app.js"></script>
+</body>
+</html>

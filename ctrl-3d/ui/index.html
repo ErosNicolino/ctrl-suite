@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CTRL 3D • Custos, prazos e pedidos</title>
+<link rel="stylesheet" href="erp.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="carregando"><img src="logo.png" alt="CTRL 3D"></div>
+
+<!-- ======================= MENU LATERAL (igual ao ERP) ======================= -->
+<aside class="lateral">
+  <img class="logo" src="logo.png" alt="CTRL 3D">
+  <nav class="nav" id="nav">
+    <div class="eyebrow-nav">ORÇAMENTOS</div>
+    <button data-p="calc" title="Novo orçamento (Ctrl+N)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M16 14v4M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M8 18h.01M12 18h.01"/></svg>Calculadora</button>
+    <button data-p="catalogo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12M3.29 7 12 12l8.71-5M7.5 4.27l9 5.15"/></svg>Catálogo</button>
+    <button data-p="pessoal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .71-1.53l7-6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Uso pessoal</button>
+    <div class="eyebrow-nav">PRODUÇÃO</div>
+    <button data-p="pedidos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M12 11h4M12 16h4M8 11h.01M8 16h.01"/></svg>Pedidos e fila<span class="badge" id="badge-fila" hidden></span></button>
+    <button data-p="filamentos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v7M20.5 7l-6 3.5"/></svg>Filamentos</button>
+    <div class="eyebrow-nav">FINANCEIRO</div>
+    <button data-p="gastos" class="fin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>Gastos</button>
+    <button data-p="resumo" class="fin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16v5M16 14v7M20 10v11M22 3l-8.65 8.65a.5.5 0 0 1-.7 0L9.35 8.35a.5.5 0 0 0-.7 0L2 15M4 18v3M8 14v7"/></svg>Resumo do mês</button>
+  </nav>
+  <div class="rodape">
+    <button class="nav-item" data-p="config" id="nav-config"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>Configurações</button>
+    <button class="link ajuda" id="bt-ajuda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>Manual de uso</button>
+    <div class="ambiente">Anycubic Kobra X • dados neste computador</div>
+  </div>
+</aside>
+
+<div class="app">
+<header class="topbar">
+  <button class="comando" id="bt-comando" title="Ir para telas e ações (Ctrl+K)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="txt">Ir para… telas e ações</span><span class="kbd">Ctrl</span><span class="kbd">K</span></button>
+  <div class="espaco"></div>
+  <button class="chip-topo" id="chip-fila" title="Abrir a fila de impressão"><span class="ponto" id="chip-fila-ponto"></span><span id="chip-fila-txt">Impressora livre</span></button>
+  <button class="btn" id="bt-novo" title="Novo orçamento (Ctrl+N)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Novo orçamento</button>
+</header>
+<main id="main">
+
+<!-- ======================= CALCULADORA ======================= -->
+<section class="pagina" id="pg-calc">
+  <div class="topo"><div><h1 id="calc-titulo">Novo orçamento</h1><p id="calc-sub">Siga as etapas — no fim aparece o resumo completo com preço, prazo e lucro.</p></div>
+    <button class="btn claro" id="bt-limpar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Começar de novo</button></div>
+
+  <nav class="passos" id="passos">
+    <button data-e="1"><span class="b">1</span><span><b>A peça</b><small>arquivo ou manual</small></span></button>
+    <i></i>
+    <button data-e="2"><span class="b">2</span><span><b class="so-venda">O pedido</b><b class="so-pessoal">Quantas</b><small class="so-venda">cliente e quantidade</small><small class="so-pessoal">quantas vai imprimir</small></span></button>
+    <i class="so-venda"></i>
+    <button data-e="3" class="so-venda"><span class="b">3</span><span><b>Preço</b><small>margem e extras</small></span></button>
+    <i></i>
+    <button data-e="4"><span class="b"><span class="so-venda">4</span><span class="so-pessoal">3</span></span><span><b class="so-venda">Resumo</b><b class="so-pessoal">Gastos</b><small>tudo pronto</small></span></button>
+  </nav>
+
+  <!-- ETAPA 1: A PEÇA -->
+  <div class="etapa" data-e="1">
+    <div class="card">
+      <h2><span class="num" style="--cor:var(--cy)">1</span>A peça <small>solte o arquivo do fatiador, escolha do catálogo ou preencha à mão</small></h2>
+      <div class="catalogo-rapido">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"/></svg>
+        <span>Já fez essa peça antes?</span>
+        <select class="inp" id="sel-produto"></select>
+      </div>
+      <div style="display:flex; gap:14px; align-items:stretch">
+        <div class="foto" id="foto" hidden><img id="foto-img" alt=""><div class="selo-tam" id="selo-tam" hidden></div></div>
+        <div style="flex:1; min-width:0">
+          <div class="soltar" id="soltar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M4 15v3.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V15"/></svg>
+            <b>Solte aqui o arquivo do fatiador</b>
+            <span>.gcode • .bgcode • .gcode.3mf — ou clique para escolher</span>
+          </div>
+          <div class="importado" id="importado"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span></span></div>
+          <div class="tam-linha" id="tam-linha" hidden><small>TAMANHO PARA IMPRESSÃO</small><span></span></div>
+        </div>
+      </div>
+      <div class="grade" style="margin-top:18px">
+        <div class="campo" style="grid-column:1/-1"><label>Nome da peça</label><input class="inp" data-k="peca" placeholder="Ex.: Chaveiro logo"></div>
+        <div class="campo"><label>Tempo no fatiador</label>
+          <div class="junto"><input class="inp p" data-k="th" value="0"><span class="uni">h</span><input class="inp p" data-k="tm" value="0"><span class="uni">min</span></div>
+          <div class="dica">O tempo que o fatiador mostra para esse arquivo.</div></div>
+        <div class="campo"><label>Peças nesse arquivo</label>
+          <div class="junto"><input class="inp m" data-k="ppm" value="1"><span class="uni">peças</span></div>
+          <div class="dica">Quantas peças tem na mesa do arquivo — normalmente 1.</div></div>
+        <div class="campo"><label>Tamanho de 1 peça (largura × profundidade × altura)</label>
+          <div class="junto"><input class="inp p" data-k="peca_l" placeholder="larg."><span class="uni">×</span><input class="inp p" data-k="peca_p" placeholder="prof."><span class="uni">×</span><input class="inp p" data-k="peca_a" placeholder="alt."><span class="uni">mm</span></div>
+          <div class="dica" id="dica-tam">Vem do arquivo. Máximo da impressora: 260 × 260 × 260 mm.</div></div>
+        <div class="campo"><label>Purga extra por impressão</label><div class="junto"><input class="inp m" data-k="purga" value="0"><span class="uni">g</span></div>
+          <div class="dica">Deixe 0 se veio do arquivo (já está somado).</div></div>
+      </div>
+      <div class="secao-tit"><label>Filamento do arquivo (por cor)</label><button class="link" data-ir="filamentos">cadastrar rolos →</button></div>
+      <div class="cores" id="cores"></div>
+      <button class="btn claro peq" id="add-cor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Adicionar cor</button>
+    </div>
+  </div>
+
+  <!-- ETAPA 2: O PEDIDO -->
+  <div class="etapa" data-e="2">
+    <div class="card">
+      <h2><span class="num" style="--cor:var(--mg)">2</span><span class="so-venda">O pedido <small>para quem e quantas</small></span><span class="so-pessoal">Quantas vai imprimir</span></h2>
+      <div class="grade">
+        <div class="campo so-venda"><label>Cliente</label><input class="inp" data-k="cliente" placeholder="Nome do cliente"></div>
+        <div class="campo"><label><span class="so-venda">Quantas peças o cliente quer?</span><span class="so-pessoal">Quantas peças?</span></label><div class="junto"><input class="inp m grande" data-k="qtd" value="1"><span class="uni">unidades</span></div><div class="dica so-venda">Ex.: 100 chaveiros</div></div>
+        <div class="campo so-venda"><label>Canal de venda</label><select class="inp" data-k="canal" id="sel-canal"></select></div>
+        <div class="campo"><label>Peças por impressão</label>
+          <div class="junto"><input class="inp m" data-k="por_mesa" placeholder="automático"><span class="uni">peças</span></div>
+          <div class="dica">Em branco = o máximo que cabe na mesa.</div></div>
+      </div>
+    </div>
+    <div class="card det" id="det-mesa"></div>
+  </div>
+
+  <!-- ETAPA 3: PREÇO -->
+  <div class="etapa" data-e="3">
+    <div class="card">
+      <h2><span class="num" style="--cor:var(--ye); color:var(--bk)">3</span>Preço <small>o resto já está calculado</small></h2>
+      <div class="grade">
+        <div class="campo"><label>Margem de lucro</label><div class="junto"><input class="inp m" data-k="margem"><span class="uni">%</span></div><div class="dica">100% = cobra o dobro do custo</div></div>
+        <div class="campo"><label>Preço que vou cobrar</label><div class="junto"><input class="inp m" data-k="preco_manual" placeholder="automático"><span class="uni">R$ / unidade</span></div><div class="dica">Opcional — em branco usa o sugerido</div></div>
+        <div class="campo"><label>Acabamento por peça</label><div class="junto"><input class="inp m" data-k="acab" value="0"><span class="uni">min</span></div><div class="dica">lixar, montar, colocar argola…</div></div>
+        <div class="campo"><label>Preparo do arquivo</label><div class="junto"><input class="inp m" data-k="preparo" value="10"><span class="uni">min</span></div><div class="dica">uma vez por pedido</div></div>
+        <div class="campo"><label>Embalagem por peça</label><div class="junto"><input class="inp m" data-k="emb"><span class="uni">R$</span></div></div>
+        <div class="campo"><label>Extras por peça</label><div class="junto"><input class="inp m" data-k="extras" value="0"><span class="uni">R$</span></div><div class="dica">argola, ímã, parafuso…</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ETAPA 4: RESUMO -->
+  <div class="etapa" data-e="4">
+    <div class="resumo">
+      <div>
+        <div class="card cabeca">
+          <div class="foto-p" id="r-foto"></div>
+          <div style="min-width:0">
+            <small class="mut"><span class="so-venda">ORÇAMENTO</span><span class="so-pessoal">IMPRESSÃO PESSOAL</span></small>
+            <h2 id="r-titulo" style="margin:2px 0 4px"></h2>
+            <div class="mut" id="r-sub"></div>
+          </div>
+        </div>
+        <div class="hero so-pessoal">
+          <div class="tile cy"><small>Tempo total</small><div class="v" id="p-tempo">—</div><div class="s" id="p-pronto"></div></div>
+          <div class="tile verde"><small>Vai gastar</small><div class="v" id="p-total">—</div><div class="s" id="p-un"></div></div>
+          <div class="tile bk"><small>Filamento</small><div class="v" id="p-fil">—</div><div class="s">de todas as cores</div></div>
+        </div>
+        <div class="acoes so-pessoal">
+          <button class="btn verde cheio" id="bt-registrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Registrar impressão (desconta o filamento do estoque)</button>
+        </div>
+        <div class="hero so-venda">
+          <div class="tile cy"><small>Tempo total</small><div class="v" id="h-tempo">—</div><div class="s" id="h-pronto"></div></div>
+          <div class="tile mg"><small>Custo / unidade</small><div class="v" id="h-custo">—</div><div class="s" id="h-custo-t"></div></div>
+          <div class="tile bk"><small>Preço / unidade</small><div class="v" id="h-preco">—</div><div class="s" id="h-total"></div></div>
+        </div>
+        <div class="frase" id="frase"></div>
+        <div class="dica-mesa" id="dica-mesa" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 9h18M9 21V9"/></svg>
+          <div><b id="dm-tit"></b><span id="dm-txt"></span></div>
+          <button class="btn peq" id="dm-usar">Usar</button>
+        </div>
+        <div class="acoes so-venda">
+          <button class="btn mg" id="bt-salvar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21h14a1 1 0 0 0 1-1V8l-4-4H5a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1z"/><path d="M8 21v-7h8v7M8 4v4h6"/></svg>Salvar pedido</button>
+          <button class="btn zap" id="bt-zap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z"/></svg>Copiar p/ WhatsApp</button>
+          <button class="btn amarelo cheio" id="bt-catalogo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Salvar no catálogo (para os próximos orçamentos)</button>
+        </div>
+      </div>
+      <div class="card det" id="det"></div>
+    </div>
+    <div class="card so-pessoal" style="margin-top:4px">
+      <h2><span class="num" style="--cor:var(--verde)">✓</span>Suas impressões pessoais neste mês <small id="pl-total"></small></h2>
+      <table class="tabela" id="tab-pessoal"></table>
+    </div>
+  </div>
+
+  <!-- barra de navegação + resumo ao vivo -->
+  <div class="navegar" id="navegar">
+    <button class="btn claro" id="nav-voltar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Voltar</button>
+    <div class="ao-vivo" id="ao-vivo"></div>
+    <button class="btn" id="nav-proximo">Próximo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+  </div>
+</section>
+
+<!-- ======================= CATÁLOGO ======================= -->
+<section class="pagina" id="pg-catalogo">
+  <div class="topo"><div><h1>Catálogo de produtos</h1><p>Tabela de preços pronta: quanto cobrar por unidade conforme a quantidade.</p></div>
+    <div class="junto"><span class="uni">Canal</span><select class="inp" id="cat-canal" style="width:280px"></select></div></div>
+  <div class="card tab"><table class="tabela" id="tab-cat"></table></div>
+  <p class="nota">Para cadastrar: monte a peça na Calculadora (ou solte o arquivo) e clique em <b>Salvar no catálogo</b>. Dois cliques num produto abre ele na calculadora.</p>
+</section>
+
+<!-- ======================= PEDIDOS ======================= -->
+<section class="pagina" id="pg-pedidos">
+  <div class="topo"><div><h1>Pedidos e fila</h1><p>Aprovado e Em produção entram na fila. Em produção também desconta o filamento do estoque.</p></div></div>
+  <div class="fila" id="fila"></div>
+  <div class="filtros">
+    <select class="inp" id="ped-filtro" style="width:180px"></select>
+    <input class="inp busca" id="ped-busca" placeholder="Buscar cliente ou peça…">
+    <span class="total" id="ped-total"></span>
+  </div>
+  <div class="card tab"><table class="tabela" id="tab-ped"></table></div>
+</section>
+
+<!-- ======================= FILAMENTOS ======================= -->
+<section class="pagina" id="pg-filamentos">
+  <div class="topo"><div><h1>Estoque de filamento</h1><p>Cadastre seus rolos com a cor — o programa reconhece a cor do arquivo e escolhe o rolo certo.</p></div></div>
+  <div class="card">
+    <h2><span class="num" style="--cor:var(--ye); color:var(--bk)">+</span>Novo rolo</h2>
+    <div class="grade" style="--cols:6; align-items:end">
+      <div class="campo" style="grid-column:span 2"><label>Nome / cor</label><div class="junto"><input type="color" class="cor" id="f-cor" value="#111111"><input class="inp" id="f-nome" placeholder="Ex.: Preto"></div></div>
+      <div class="campo"><label>Marca</label><input class="inp" id="f-marca" placeholder="Ex.: Voolt"></div>
+      <div class="campo"><label>Tipo</label><select class="inp" id="f-tipo"></select></div>
+      <div class="campo"><label>Preço de 1 rolo</label><div class="junto"><input class="inp" id="f-preco" placeholder="R$"></div></div>
+      <div class="campo"><label>Peso do rolo</label><div class="junto"><input class="inp" id="f-peso" value="1000"><span class="uni">g</span></div></div>
+    </div>
+    <div class="junto" style="margin-top:14px; justify-content:space-between">
+      <div class="junto" style="gap:18px"><div class="junto"><span class="uni">Quantidade de rolos</span><input class="inp p" id="f-qtd" value="1"></div>
+        <label class="chk"><input type="checkbox" id="f-lancar" checked>Lançar a compra em Gastos</label></div>
+      <button class="btn amarelo" id="f-add">Adicionar rolo</button>
+    </div>
+  </div>
+  <div class="filtros"><span class="total" id="fil-total"></span></div>
+  <div class="card tab"><table class="tabela" id="tab-fil"></table></div>
+</section>
+
+<!-- ======================= GASTOS ======================= -->
+<section class="pagina" id="pg-gastos">
+  <div class="topo"><div><h1>Gastos da loja</h1><p>Luz, filamento, peças, embalagem, aluguel, MEI… tudo que sai do caixa.</p></div></div>
+  <div class="card">
+    <h2><span class="num" style="--cor:var(--bk)">+</span>Novo gasto</h2>
+    <div class="grade" style="--cols:5; align-items:end">
+      <div class="campo"><label>Data</label><input class="inp" id="g-data"></div>
+      <div class="campo"><label>Categoria</label><select class="inp" id="g-cat"></select></div>
+      <div class="campo" style="grid-column:span 2"><label>Descrição</label><input class="inp" id="g-desc" placeholder="Ex.: Conta de luz de outubro"></div>
+      <div class="campo"><label>Valor</label><div class="junto"><input class="inp" id="g-valor" placeholder="R$"><button class="btn amarelo" id="g-add">Adicionar</button></div></div>
+    </div>
+  </div>
+  <div class="filtros"><select class="inp" id="g-mes" style="width:150px"></select><span class="total" id="g-total"></span></div>
+  <div class="card tab"><table class="tabela" id="tab-gas"></table></div>
+</section>
+
+<!-- ======================= RESUMO ======================= -->
+<section class="pagina" id="pg-resumo">
+  <div class="topo"><div><h1>Resumo do mês</h1><p>Quanto vendeu, quanto entrou, quanto gastou e quanto sobrou.</p></div>
+    <div class="junto"><select class="inp" id="r-mes" style="width:150px"></select><button class="btn verde" id="r-excel">Exportar para Excel</button></div></div>
+  <div class="tiles" id="r-tiles"></div>
+  <div class="faixa-pessoal" id="r-pessoal" hidden></div>
+  <div class="dois">
+    <div class="card"><h2><span class="num" style="--cor:var(--mg)">$</span>Gastos por categoria</h2><div class="lista-simples" id="r-cats"></div></div>
+    <div class="card"><h2><span class="num" style="--cor:var(--cy)">★</span>Peças mais vendidas</h2><div class="lista-simples" id="r-top"></div></div>
+  </div>
+  <p class="nota">Vendido = pedidos aprovados em diante (sem orçamentos e cancelados). Saldo de caixa = recebido − gastos. Lucro dos pedidos = preço − todos os custos calculados.</p>
+</section>
+
+<!-- ======================= CONFIGURAÇÕES ======================= -->
+<section class="pagina" id="pg-config">
+  <div class="topo"><div><h1>Configurações</h1><p>Preencha uma vez. Todos os cálculos usam esses valores.</p></div>
+    <button class="btn mg" id="c-salvar">Salvar configurações</button></div>
+  <div class="card"><h2><span class="num" style="--cor:var(--cy)">⚙</span>Impressora, energia e trabalho</h2><div class="grade" id="c-campos" style="--cols:3"></div></div>
+  <div class="card"><h2><span class="num" style="--cor:var(--mg)">%</span>Canais de venda e taxas <small>confira as taxas atuais — elas mudam com frequência</small></h2>
+    <table class="tabela" id="tab-canais"></table>
+    <div class="grade" style="--cols:4; align-items:end; margin-top:14px">
+      <div class="campo" style="grid-column:span 2"><label>Nome do canal</label><input class="inp" id="cn-nome" placeholder="Ex.: Instagram"></div>
+      <div class="campo"><label>Taxa (%)</label><input class="inp" id="cn-pct" placeholder="0"></div>
+      <div class="campo"><label>Taxa fixa por venda (R$)</label><div class="junto"><input class="inp" id="cn-fixa" placeholder="0"><button class="btn amarelo" id="cn-add">Salvar</button></div></div>
+    </div>
+  </div>
+  <div class="card"><h2><span class="num" style="--cor:var(--ye); color:var(--bk)">⛁</span>Seus dados</h2>
+    <p class="nota" id="c-caminho"></p>
+    <p class="nota" style="margin-top:4px">Está no OneDrive? Então já tem cópia na nuvem. Mesmo assim, faça backup de vez em quando.</p>
+    <div class="junto" style="margin-top:14px"><button class="btn cy" id="c-pasta">Abrir pasta</button><button class="btn" id="c-backup">Fazer backup agora</button></div>
+    <p class="nota" style="margin-top:8px">O backup vai para a pasta Dados\Backups, com data e hora no nome.</p>
+  </div>
+</section>
+</main>
+</div>
+
+<div id="toasts"></div>
+<div id="modal-fundo"><div class="modal" id="modal"><div class="m-cab"><h3 id="m-tit"></h3></div><div class="m-corpo"><p id="m-txt"></p><input class="inp" id="m-inp" hidden></div><div class="bts"><button class="btn soft" id="m-nao">Cancelar</button><button class="btn" id="m-sim">OK</button></div></div></div>
+<div id="paleta-fundo"><div class="paleta"><input id="paleta-inp" placeholder="Ir para… (digite o nome da tela ou ação)"><div class="itens" id="paleta-itens"></div></div></div>
+<div id="arrastar"><div>Solte o arquivo para calcular</div></div>
+<script src="app.js"></script>
+</body>
+</html>

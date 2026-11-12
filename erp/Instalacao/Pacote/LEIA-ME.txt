@@ -1,0 +1,31 @@
+ERP Gráfica — pacote de atualização (versão em versao.txt; mudanças em O_QUE_MUDOU.txt)
+=====================================================================================
+
+COMO ATUALIZAR (PC1)
+--------------------
+1. Coloque esta pasta inteira em  D:\Grafica CA CP\ERP\Atualizacoes\
+2. Feche o "Caixa da Grafica" em todos os computadores.
+3. Clique no atalho "Atualizar ERP" (Atualizacoes\Atualizar_ERP.cmd).
+   Ele confere o pacote, pergunta se pode atualizar e pede a confirmação de administrador do Windows.
+   Nada é feito sozinho: só atualiza quando você clica e confirma.
+4. No fim aparece "ERP atualizado" (ou o motivo do erro). Se algo falhar, a versão anterior volta sozinha.
+5. Atualize também o programa do PC2 / notebook.
+
+Sem o botão: botão direito em Instalar_no_PC1.cmd > "Executar como administrador".
+
+TESTAR ANTES (opcional, não instala nada)
+-----------------------------------------
+Dois cliques em Testar_Antes_de_Instalar.cmd: abre o programa novo com uma CÓPIA do último backup do banco
+(título [TESTE]). Pode rodar em qualquer PC.
+
+DEPOIS DE ATUALIZAR
+-------------------
+[ ] Rodapé do programa mostra a versão nova; servidor rodando (sc query GraficaCaixaServer = RUNNING).
+[ ] Celular: abra o app; ele avisa a nova versão e recarrega.
+[ ] Confira os itens do O_QUE_MUDOU.txt.
+
+SE DER ERRADO
+-------------
+Backup completo em ERP\Backups\antes-da-<versão>-<data> (programa, código e banco).
+Ficam só os 2 backups "antes-da" mais novos e, em Atualizacoes, só o pacote atual e o anterior (os mais velhos são apagados na instalação).
+Para voltar: net stop GraficaCaixaServer, copie de volta a pasta Programa do backup e net start GraficaCaixaServer.

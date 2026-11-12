@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>CTRL Ponto • Manual de uso</title>
+<style>
+:root{--paper:#F7F9F8;--ink:#202A30;--muted:#5B6970;--line:#DCE5E2;--accent:#147A70;--soft:#E4F1ED}
+body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:15px}
+header{background:#fff;border-bottom:1px solid var(--line);padding:26px 0}.w{max-width:880px;margin:0 auto;padding:0 26px}
+h1{margin:0;font-size:28px;font-weight:600}header p{margin:4px 0 0;color:var(--muted)}
+section{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 24px;margin:16px 0}
+h2{margin:0 0 8px;font-size:18px;font-weight:600;display:flex;gap:10px;align-items:center}
+h2 span{width:26px;height:26px;border-radius:13px;background:var(--soft);color:var(--accent);display:grid;place-items:center;font-size:13px;font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}th{background:#F2F6F5;color:var(--muted);font-weight:600}
+.nota{background:var(--soft);color:#0E5F57;border-radius:10px;padding:9px 12px}kbd{background:#F2F6F5;border:1px solid var(--line);border-radius:5px;padding:0 5px;font-size:12px}
+</style></head><body>
+<header><div class="w"><h1>CTRL Ponto — Manual de uso</h1><p>Controle de jornada da Gráfica Ctrl A Ctrl P</p></div></header>
+<div class="w">
+<section><h2><span>1</span>Registrar ponto</h2>
+<p>Escolha o colaborador e clique no botão verde (ou <kbd>F2</kbd>). O botão mostra qual é o próximo registro: entrada, saída para almoço, volta e saída. Em meia jornada (até 6 h, como no sábado) são só entrada e saída.</p>
+<p class="nota">A <b>entrada conta 3 minutos antes</b> do clique, o tempo de chegar e ligar o computador. Ajuste em Configurações (0 = hora exata). O histórico anota a hora real do clique.</p>
+<p>Ao lado aparecem: trabalhado hoje, quanto falta e a que horas cumpre a meta, o saldo do mês e o saldo acumulado.</p></section>
+<section><h2><span>2</span>Folha mensal</h2>
+<p>Escolha colaborador e mês. Clique em qualquer dia para editar os quatro horários e a meta; o saldo é recalculado enquanto você digita. O <b>motivo é obrigatório</b> e fica no histórico com os valores antigos e novos. Dias ajustados aparecem com <b>*</b>.</p>
+<p><b>Gerar PDF</b> salva em <i>relatorios</i> e abre. <b>Imprimir</b> abre a prévia do Windows: escolha a impressora (Ricoh), A4, retrato. O PDF e a impressão usam a mesma folha, com linhas de assinatura.</p></section>
+<section><h2><span>3</span>Saldo de horas</h2>
+<table><tr><th>Situação</th><th>Como conta</th></tr>
+<tr><td>Completo</td><td>Saldo = horas trabalhadas − meta do dia (almoço descontado).</td></tr>
+<tr><td>Trabalhando / Em almoço</td><td>Hoje, ainda aberto: mostra o que falta.</td></tr>
+<tr><td>Incompleto / Sem marcação</td><td>Dia passado pendente: não entra no saldo. Corrija em Editar dia.</td></tr>
+<tr><td>Folga / Feriado</td><td>Meta zero.</td></tr></table></section>
+<section><h2><span>4</span>Escala, feriados e mudanças de jornada</h2>
+<p>Em <b>Escala e feriados</b>: meta de cada dia da semana (vale a partir de hoje; dias já iniciados guardam a meta). Feriados de São Paulo/SP são automáticos. Use <b>Mudança de jornada</b> para folga combinada, trabalho em feriado ou domingo, ou meio período numa data.</p></section>
+<section><h2><span>5</span>Fechamento, backup e histórico</h2>
+<p>Com o fechamento automático ligado, o PDF do mês é gerado sozinho no último dia após as 20h (ou ao abrir, para meses anteriores) se não houver pendências. Depois de ajustar um mês fechado, gere o PDF de novo.</p>
+<p>Backups diários ficam em <i>%LOCALAPPDATA%\CtrlPonto\backups</i>. Em <b>Histórico de alterações</b> você pesquisa todo registro, ajuste e fechamento.</p></section>
+<section><h2><span>6</span>Atalhos</h2>
+<table><tr><td><kbd>F2</kbd></td><td>Registrar ponto</td></tr><tr><td><kbd>Ctrl</kbd> <kbd>K</kbd></td><td>Ir para telas, ações e folhas de cada colaborador</td></tr><tr><td><kbd>Esc</kbd></td><td>Fecha diálogos</td></tr></table></section>
+</div></body></html>

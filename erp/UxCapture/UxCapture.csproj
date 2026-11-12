@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Ferramenta de apoio ao redesenho (UX 2.0): abre as telas do ERP sobre uma COPIA temporaria do banco
+       e salva PNGs (claro/escuro, texto normal/grande) e tempos de abertura. Nao faz parte do produto. -->
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0-windows</TargetFramework><UseWPF>true</UseWPF><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable></PropertyGroup>
+  <ItemGroup><ProjectReference Include="..\Wpf\GraficaCaixa.Wpf.csproj" /></ItemGroup>
+  <ItemGroup><Resource Include="..\icon.ico" Link="Assets\icon.ico" /><Resource Include="..\Wpf\Assets\brand-logo.png" Link="Assets\brand-logo.png" /></ItemGroup>
+</Project>
